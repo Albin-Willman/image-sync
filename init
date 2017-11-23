@@ -11,10 +11,13 @@ puts 'Input name: (Will prefix files on other computers)'
 name = gets.chomp
 puts 'Input bucket name'
 bucket_name = gets.chomp
+puts 'Input image folder path'
+folder_path = gets.chomp
 library = JSON.parse("{}")
 # 'albin-and-sara-photos'
 library['name'] = name
 library['bucket_name'] = bucket_name
+library['folder_path'] = folder_path
 library['files'] = {}
 
 File.open(library_file,"w") do |f|

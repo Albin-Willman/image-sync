@@ -1,0 +1,20 @@
+#!/usr/bin/env ruby
+require 'aws-sdk'
+require './syncer.rb'
+
+library_file = '.library.data'
+library = JSON.parse(File.read(library_file))
+bucket_name = library['bucket_name']
+s3 = Aws::S3::Resource.new(region:'eu-west-1')
+bucket = s3.bucket(bucket_name)
+
+
+images = Dir.glob("**/*.jpg")
+
+
+syncer = Syncer.new(library['name'], bucket, library)
+syncer.sync(images)
+
+File.open(library_file,"w") do |f|
+  f.write(library.to_json)
+end

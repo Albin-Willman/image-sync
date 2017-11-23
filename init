@@ -1,0 +1,22 @@
+#!/usr/bin/env ruby
+require 'json'
+library_file = '.library.data'
+if File.exists?(library_file)
+  puts "Syncer already initialized. Proceed anyway? (y)"
+  verification = gets.chomp
+  return unless verification == 'y'
+end
+
+puts 'Input name: (Will prefix files on other computers)'
+name = gets.chomp
+puts 'Input bucket name'
+bucket_name = gets.chomp
+library = JSON.parse("{}")
+# 'albin-and-sara-photos'
+library['name'] = name
+library['bucket_name'] = bucket_name
+library['files'] = {}
+
+File.open(library_file,"w") do |f|
+  f.write(library.to_json)
+end

@@ -9,4 +9,4 @@ A small ruby plugin for sharing images between computers.
 
 ## Usage
 
-Add images to this folder and run `./sync`
+Add images to the selected folder and run `./sync` in order to sync them.

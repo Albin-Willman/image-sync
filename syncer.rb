@@ -46,11 +46,15 @@ class Syncer
   end
 
   def upload_all_local(files)
-    files.each do |file|
+    number_of_files = files.length
+    files.each_with_index do |file, i|
       next if library['files'][file]
+      print "#{i}/#{number_of_files}"
+      print "\r"
       upload_file(file, name)
       library['files'][file] = 2
     end
+    puts "Uploaded files"
   end
 
   def content_type(file_path)
